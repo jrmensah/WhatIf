@@ -4,54 +4,58 @@ import java.util.Scanner;
 
 public class TaxCode {
     public static void main(String [] args){
-        int num1 =101;
-        int salesAmt=500;
-        int taxCode= 0;
-        int total = salesAmt *taxCode + salesAmt;
+        int customerNum;
+        double salesAmt, tax=0.00, total, subtotal;
+        String name, taxCode;
 
-        String name;
-
-        Scanner keyboard = new Scanner(System.in);
+        
+        Scanner scan = new Scanner(System.in);
 
 
 //        Enter Customer ID
 
         System.out.println("Customer ID:");
-        num1 = keyboard.nextInt();
-        keyboard.nextLine();
+        customerNum = scan.nextInt();
+        scan.nextLine();
 
 //        Enter name
 
         System.out.println("Customer Name:");
-        name = keyboard.nextLine();
-        keyboard.nextLine();
+        name = scan.nextLine();
+
 
 //        Enter Sales Amount
 
         System.out.println("Sales Amount:");
-        salesAmt = keyboard.nextInt();
-        keyboard.nextLine();
+        salesAmt = scan.nextDouble();
+
 
 //        Enter Tax Code Amount
 
         System.out.println("Tax Code:");
-        taxCode = keyboard.nextInt();
-        keyboard.nextLine();
+        taxCode = scan.next();
+        scan.nextLine();
 
 //        Total of Sale
+        switch (taxCode.toUpperCase()){
+            case "NRM": tax = 0.06;
+                        break;
+            case "NPF": tax = 0.00;
+                    break;
+            case "BIZ": tax = 0.45;
+                break;
+        }
 
-        System.out.println("Total Amount Due:" + salesAmt);
-        total = keyboard.nextInt();
-        keyboard.nextLine();
+        subtotal = salesAmt * tax;
+        total =salesAmt + subtotal;
 
+//     Print receipt
 
-//     Print recipt
-
-        System.out.println("Customer ID:" + num1);
+        System.out.println("Customer ID:" + customerNum);
         System.out.println("Customer Name:" + name);
-        System.out.println("Sales Amount:" + salesAmt);
-        System.out.println("Tax Code:" + taxCode);
-        System.out.println("Total Amount Due:" + total);
+        System.out.println("Sales Amount: $" + salesAmt);
+        System.out.println("Tax Code:" + taxCode.toUpperCase());
+        System.out.println("Total Amount Due: $" + total);
 
     }
 }
